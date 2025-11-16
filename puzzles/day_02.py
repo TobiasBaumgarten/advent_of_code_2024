@@ -27,3 +27,27 @@ def solve_puzzle_1(input: str) -> int:
     """Returns how many reports are safe"""
     reports = parse_input(input)
     return sum(is_report_safe(r) for r in reports)
+
+
+def solve_puzzle_2(input: str) -> int:
+    reports = parse_input(input)
+    sum_safe_reports = 0
+
+    for report in reports:
+        if is_report_safe(report):
+            sum_safe_reports += 1
+            continue
+
+        # when the report isn't safe remove a part of the list and check it again
+        is_mod_report_safe = False
+
+        for idx in range(len(report)):
+            mod_report = report[:idx] + report[idx + 1 :]
+            if is_report_safe(mod_report):
+                is_mod_report_safe = True
+                break
+
+        if is_mod_report_safe:
+            sum_safe_reports += 1
+
+    return sum_safe_reports
