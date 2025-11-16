@@ -5,6 +5,7 @@ https://adventofcode.com/2024/day/1
 
 
 def solve_puzzle_1(input: str) -> int:
+    """Solve the first part of the day 1 puzzle"""
     la, lb = parse_input(input)
 
     la.sort()
@@ -12,6 +13,19 @@ def solve_puzzle_1(input: str) -> int:
     sum = 0
     for a, b in list(zip(la, lb)):
         sum += abs(a - b)
+
+    return sum
+
+
+def solve_puzzle_2(input: str) -> int:
+    """Solve the second part of the day 1 puzzle"""
+    la, lb = parse_input(input)
+    sum = 0
+
+    for a in la:
+        appearance = list(filter(lambda x: x == a, lb))
+        times = len(appearance)
+        sum += a * times
 
     return sum
 

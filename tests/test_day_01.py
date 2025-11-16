@@ -1,6 +1,6 @@
 from pathlib import Path
 import unittest
-from puzzels.day_01 import parse_input, solve_puzzle_1
+from puzzles.day_01 import *
 
 EXAMPLE_INPUT = """3   4
 4   3
@@ -25,6 +25,15 @@ class TestDay01(unittest.TestCase):
         input = Path("puzzle_input/day_01.txt").read_text()
         sum = solve_puzzle_1(input)
         self.assertEqual(sum, 1580061)
+
+    def test_solve_2_example(self):
+        sum = solve_puzzle_2(EXAMPLE_INPUT)
+        self.assertEqual(sum, 31)
+
+    def test_solve_2_input(self):
+        input = Path("puzzle_input/day_01.txt").read_text()
+        sum = solve_puzzle_2(input)
+        self.assertEqual(sum, 23046913)
 
 
 if __name__ == "__main__":
